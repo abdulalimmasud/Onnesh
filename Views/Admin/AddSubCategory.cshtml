@@ -1,0 +1,89 @@
+﻿@model OnneshProject.Models.Category
+
+@{
+    ViewBag.Title = "Add Sub Sub Category";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    string message = ViewBag.Success ?? "";
+    string errorMessage = ViewBag.Error ?? "";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row" id="main">
+        <div class="col-sm-12 col-md-12 well" id="content">
+            <h1>Add Sub Sub Category</h1>
+        </div>
+    </div>
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @if (message != "")
+                {
+                <div class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>@message</strong>
+                </div>
+            }
+            else if (errorMessage != "")
+            {
+                <div class="alert alert-danger">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>@errorMessage</strong>
+                </div>
+            }
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.CategoryType, new SelectList(ViewBag.CategoryType, "Value", "Text"), new { @class = "form-control", @required = "" })
+                @Html.ValidationMessageFor(model => model.CategoryType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Parent_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.Parent_Id, new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control", @required = "" })
+                @Html.ValidationMessageFor(model => model.Parent_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Name" class="control-label col-md-2">Sub Sub Category</label>
+            @*@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @required = "" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+<script>
+    $(document).ready(function () {
+        $("#CategoryType").change(function () {
+            $("#Parent_Id").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("CategoryList")',
+                dataType: 'json',
+                data: { categoryType: $("#CategoryType").val() },
+                success: function (data) {
+                    $.each(data, function (i, category) {
+                        $("#Parent_Id").append('<option value="' + category.Value + '">' + category.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve Sub Category.' + ex);
+                }
+            })
+        })
+    });
+</script>
