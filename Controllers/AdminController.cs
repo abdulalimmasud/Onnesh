@@ -1,5 +1,6 @@
 ﻿using OnneshProject.DAL;
 using OnneshProject.Models;
+using OnneshProject.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,13 @@ namespace OnneshProject.Controllers
 {
     public class AdminController : Controller
     {
+        [AdminAuthorize(Roles = "Super,Admin,Content,Sales,Accounts,CRM")]
         public ActionResult Index()
         {
             return View();
         }
         [HttpGet]
+        [AdminAuthorize(Roles = "Super,Content,Sales,CRM")]
         public ActionResult AddCategory()
         {
             ViewBag.CategoryType = CategoryType();
@@ -40,6 +43,7 @@ namespace OnneshProject.Controllers
             return View();
         }
         [HttpGet]
+        [AdminAuthorize(Roles = "Super,Content,Sales,CRM")]
         public ActionResult AddSubCategory()
         {
             ViewBag.CategoryType = CategoryType();

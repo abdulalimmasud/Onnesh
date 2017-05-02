@@ -1,0 +1,108 @@
+﻿@model OnneshProject.Models.AdminUser
+
+@{
+    ViewBag.Title = "AddAdmin";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+
+    string message = ViewBag.Success ?? "";
+    string errorMessage = ViewBag.Error ?? "";
+}
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row" id="main">
+            <div class="col-sm-12 col-md-12 well" id="content">
+                <h1>Register New Admin</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @if (message != "")
+                {
+                <div class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>@message</strong>
+                </div>
+            }
+            else if (errorMessage != "")
+            {
+                <div class="alert alert-danger">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>@errorMessage</strong>
+                </div>
+            }
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DistrictId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.DistrictId, new SelectList(ViewBag.Districts, "Value", "Text"), new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DistrictId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AdminType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.AdminType, new SelectList(ViewBag.AdminTypes, "Value", "Text"), new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AdminType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
