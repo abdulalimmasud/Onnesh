@@ -149,11 +149,13 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\AccountGateway.cs" />
     <Compile Include="DAL\AdminUserGateway.cs" />
     <Compile Include="DAL\CategoryGateway.cs" />
     <Compile Include="DAL\ConnectionGateway.cs" />
     <Compile Include="DAL\GeneralGateway.cs" />
+    <Compile Include="DAL\UserGateway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
