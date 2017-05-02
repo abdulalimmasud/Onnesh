@@ -43,11 +43,37 @@ namespace OnneshProject.Controllers
             SessionPersister.AccountType = string.Empty;
             return RedirectToAction("Login");
         }
-        [AdminAuthorize(Roles = "Super,Admin,Accounts")]
+        [HttpGet]
+        [AdminAuthorize(Roles = "Super,Admin")]
         public ActionResult AddAdmin()
         {
             ViewBag.Districts = DistrictList();
             ViewBag.AdminTypes = AdminTypes();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddAdmin(AdminUser user)
+        {
+            ViewBag.Districts = DistrictList();
+            ViewBag.AdminTypes = AdminTypes();
+            if (ModelState.IsValid)
+            {
+                user.AddedBy = Convert.ToInt32(SessionPersister.Id);
+                int rowAffected = new AdminUserGateway().SaveNewAdmin(user);
+                if(rowAffected > 0)
+                {
+                    ModelState.Clear();
+                    ViewBag.Success = "Admin Register Successful";
+                }
+                else
+                {
+                    ViewBag.Error = "Server get an error";
+                }
+            }
+            else
+            {
+                ViewBag.Error = "Invalid Information";
+            }            
             return View();
         }
         public List<SelectListItem> DistrictList()

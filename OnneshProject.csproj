@@ -150,6 +150,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="DAL\AccountGateway.cs" />
+    <Compile Include="DAL\AdminUserGateway.cs" />
     <Compile Include="DAL\CategoryGateway.cs" />
     <Compile Include="DAL\ConnectionGateway.cs" />
     <Compile Include="DAL\GeneralGateway.cs" />

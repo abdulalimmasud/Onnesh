@@ -17,14 +17,13 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">AjkerDeal</span>
+                    <span class="sr-only">Onnesh</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="">
-                    <img src="https://ajkerdeal.com/images/" alt="Logo Image" height="50px" width="75px" />
-                    @*<img src="https://ajkerdeal.com/images/Logo.png" alt="Logo Image" width="30px" />*@
+                    <img src="" alt="Logo Image" height="50px" width="75px" />
                 </a>
             </div>
             <!-- Top Menu Items -->
@@ -58,7 +57,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="@Url.Action("CreateUser","User")"><i class="fa fa-fw fa-user-plus"></i>Add User</a>
+                            <a href="@Url.Action("AddAdmin","Accounts")"><i class="fa fa-fw fa-user-plus"></i>Register User</a>
                         </li>
                     }
                     @if (Convert.ToInt32(OnneshProject.Security.SessionPersister.AccountType) == 4)
@@ -72,7 +71,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="@Url.Action("CreateCustomer", "Customer")"><i class="fa fa-fw fa-user-plus"></i>Add Customer</a>
+                            <a href="@Url.Action("", "")"><i class="fa fa-fw fa-user-plus"></i></a>
                         </li>
                     }
                     <li>
