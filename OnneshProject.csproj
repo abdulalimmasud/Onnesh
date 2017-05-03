@@ -137,6 +137,7 @@
     <Content Include="Content\CSS\Common\adminlogin.css" />
     <Content Include="Content\CSS\Common\admin_layout.css" />
     <Content Include="Content\CSS\Common\bootstrap.min.css" />
+    <Content Include="Content\CSS\Common\font-awesome.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Common\bootstrap.min.js" />
     <Content Include="Scripts\Common\jquery-3.2.1.min.js" />
@@ -149,6 +150,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
+    <Compile Include="Controllers\ManageUserController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\AccountGateway.cs" />
     <Compile Include="DAL\AdminUserGateway.cs" />
@@ -183,6 +185,8 @@
     <Content Include="Views\Accounts\AdminLogin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Accounts\AddAdmin.cshtml" />
+    <Content Include="Views\ManageUser\NonConfirmUserList.cshtml" />
+    <Content Include="Views\ManageUser\Users.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

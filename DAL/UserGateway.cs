@@ -25,5 +25,15 @@ namespace OnneshProject.DAL
                 return con.Execute(sql: @"[General].[USP_InsertUser]", param: parameter, commandType: CommandType.StoredProcedure);
             }
         }
+        public List<Users> GetUsers(int isPermitted, int isActive)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add(name: "@IsPermitted", value: isPermitted, dbType: DbType.Int16, direction: ParameterDirection.Input);
+            parameter.Add(name: "@IsActive", value: isActive, dbType: DbType.Int16, direction: ParameterDirection.Input);
+            using(var con = new ConnectionGateway().GetConnection())
+            {
+                return con.Query<Users>(sql: "[Admin].[GetUsers]", param: parameter, commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
     }
 }
