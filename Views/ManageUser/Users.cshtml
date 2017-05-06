@@ -50,14 +50,11 @@
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a class="btn btn-default" value="left">
+                                            <a href="@Url.Action("EditUser",new { id = item.Id})" class="btn btn-default" value="left">
                                                 <i class="fa fa-fw s fa-pencil-square-o"></i>Edit
                                             </a>
-                                            <a class="btn btn-default" value="center">
-                                                <i class="fa fa-fw s fa-remove"></i>Remove
-                                            </a>
                                             <a class="btn btn-default" value="right">
-                                                <i class="fa fa-fw fa-cog"></i>Confirm
+                                                <i class="fa fa-fw s fa-remove"></i>Delete
                                             </a>
                                         </div>
                                     </td>

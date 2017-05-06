@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "NonConfirmUserList";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
+    string message = ViewBag.Success ?? "";
+    string errorMessage = ViewBag.Error ?? "";
 }
 <div id="page-wrapper">
     <div class="container-fluid">
@@ -15,6 +17,22 @@
 </div>
 <div class="section">
     <div class="container">
+        <div class="row">
+            @if (message != "")
+            {
+                <div class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>@message</strong>
+                </div>
+            }
+            else if (errorMessage != "")
+            {
+                <div class="alert alert-danger">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>@errorMessage</strong>
+                </div>
+            }
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-hover table-striped">
@@ -49,11 +67,11 @@
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a class="btn btn-default" value="left">
+                                            <a href="@Url.Action("EditUser",new { id = item.Id})" class="btn btn-default" value="left">
                                                 <i class="fa fa-fw s fa-pencil-square-o"></i>Edit
                                             </a>
-                                            <a class="btn btn-default" value="center">
-                                                <i class="fa fa-fw s fa-remove"></i>Remove
+                                            <a href="@Url.Action("DeleteNonConfirmUser", new { id = item.Id})" class="btn btn-default" value="center">
+                                                <i class="fa fa-fw s fa-remove"></i>Delete
                                             </a>
                                             <a class="btn btn-default" value="right">
                                                 <i class="fa fa-fw fa-cog"></i>Confirm

@@ -187,6 +187,7 @@
     <Content Include="Views\Accounts\AddAdmin.cshtml" />
     <Content Include="Views\ManageUser\NonConfirmUserList.cshtml" />
     <Content Include="Views\ManageUser\Users.cshtml" />
+    <Content Include="Views\ManageUser\EditUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
