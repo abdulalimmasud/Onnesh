@@ -11,12 +11,13 @@ namespace OnneshProject.Controllers
 {
     public class AdminController : Controller
     {
+        [HttpGet, OutputCache(NoStore = true, Duration = 1)]
         [AdminAuthorize(Roles = "Super,Admin,Content,Sales,Accounts,CRM")]
         public ActionResult Index()
         {
             return View();
         }
-        [HttpGet]
+        [HttpGet, OutputCache(NoStore = true, Duration = 1)]
         [AdminAuthorize(Roles = "Super,Content,Sales,CRM")]
         public ActionResult AddCategory()
         {
@@ -42,14 +43,14 @@ namespace OnneshProject.Controllers
             }
             return View();
         }
-        [HttpGet]
+        [HttpGet, OutputCache(NoStore = true, Duration = 1)]
         [AdminAuthorize(Roles = "Super,Content,Sales,CRM")]
         public ActionResult AddSubCategory()
         {
             ViewBag.CategoryType = CategoryType();
             return View();
         }
-        [HttpPost]
+        [HttpGet, OutputCache(NoStore = true, Duration = 1)]
         public ActionResult AddSubCategory(Category categroy)
         {
             ViewBag.CategoryType = CategoryType();

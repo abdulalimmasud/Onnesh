@@ -11,6 +11,7 @@ namespace OnneshProject.Security
         static string accountNameSession = "accountName";
         static string accountIdSession = "accountId";
         static string accountTypeSession = "accountType";
+        static string accountPermitSession = "permitType";
 
         public static string Email
         {
@@ -74,6 +75,22 @@ namespace OnneshProject.Security
             set
             {
                 HttpContext.Current.Session[accountTypeSession] = value;
+            }
+        }
+        public static string PermitType
+        {
+            get
+            {
+                if (HttpContext.Current.Session == null)
+                    return string.Empty;
+                var permitType = HttpContext.Current.Session[accountPermitSession];
+                if (permitType != null)
+                    return permitType as string;
+                return null;
+            }
+            set
+            {
+                HttpContext.Current.Session[accountPermitSession] = value;
             }
         }
     }

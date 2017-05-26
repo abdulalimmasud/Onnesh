@@ -1,109 +1,356 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!--IE Compatibility modes-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--Mobile first-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>@ViewBag.Title</title>
+    <meta name="description" content="Onnesh">
+    <meta name="author" content="">
+    <meta name="msapplication-TileColor" content="#5bc0de" />
+    <meta name="msapplication-TileImage" content="assets/img/metis-tile.png" />
+    <link href="~/Content/CSS/Common/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/CSS/Common/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/CSS/Common/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/CSS/Common/admin_layout.css" rel="stylesheet" />
-    <script src="~/Scripts/Common/jquery-3.2.1.min.js"></script>
-    <script src="~/Scripts/Common/bootstrap.min.js"></script>
+    <link href="~/Content/CSS/Common/main.css" rel="stylesheet" />
+    <link href="~/Content/CSS/Common/metisMenu.css" rel="stylesheet" />
+    <link href="~/Content/CSS/Common/onoffcanvas.css" rel="stylesheet" />
+    <link href="~/Content/CSS/Common/animate.css" rel="stylesheet" />
+    <script>
+        less = {
+            env: "development",
+            relativeUrls: false,
+            rootpath: "/Content/"
+        };
+    </script>
+    <link href="~/Content/CSS/Common/style-switcher.css" rel="stylesheet" />
+    <link rel="stylesheet/less" type="text/css" href="~/Content/theme.less">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
+    <script src="~/Scripts/Common/jquery.js"></script>
+    <script src="~/Scripts/Common/bootstrap.js"></script>
+    <script src="~/Scripts/Common/metisMenu.js"></script>
+    <script src="~/Scripts/Common/onoffcanvas.js"></script>
+    <script src="~/Scripts/Common/screenfull.js"></script>
+    <script src="~/Scripts/Common/core.js"></script>
+    <script src="~/Scripts/Common/app.js"></script>
+    <script src="~/Scripts/Common/style-switcher.js"></script>
 </head>
+@using OnneshProject.Security
 <body>
-    <div id="throbber" style="display:none; min-height:120px;"></div>
-    <div id="noty-holder"></div>
-    <div id="wrapper">
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Onnesh</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="">
-                    <img src="" alt="Logo Image" height="50px" width="75px" />
-                </a>
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                <li>
-                    <a href="" data-placement="bottom" data-toggle="tooltip" data-original-title="Stats">
-                        <i class="fa fa-bar-chart-o"></i>
+    <div class="bg-dark dk" id="wrap">
+        <div id="top">
+            <!-- .navbar -->
+            <nav class="navbar navbar-inverse navbar-static-top">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <header class="navbar-header">
+
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="index.html" class="navbar-brand"><img src="~/Content/Images/logo.png" alt=""></a>
+
+                    </header>
+
+                    <div class="topnav">
+                        <div class="btn-group">
+                            <a data-placement="bottom" data-original-title="Fullscreen" data-toggle="tooltip"
+                               class="btn btn-default btn-sm" id="toggleFullScreen">
+                                <i class="glyphicon glyphicon-fullscreen"></i>
+                            </a>
+                        </div>
+                        <div class="btn-group">                            
+                            <a data-toggle="modal" data-original-title="Help" data-placement="bottom"
+                               class="btn btn-default btn-sm"
+                               href="#helpModal">
+                                <i class="fa fa-question"></i>
+                            </a>
+                        </div>
+                        <div class="btn-group">
+                            <a href="" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom"
+                               class="btn btn-metis-1 btn-sm">
+                                <i class="fa fa-power-off"></i>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+                        <!-- .nav -->
+                        <ul class="nav navbar-nav">
+                            <li><a href="dashboard.html">Dashboard</a></li>
+                            <li class='dropdown '>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    @SessionPersister.Name <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="form-general.html">Edit Profile</a></li>
+                                    <li><a href="form-validation.html">Change Password</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!-- /.nav -->
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+            <!-- /.navbar -->            
+        </div>
+        <!-- /#top -->
+
+        <div id="left">            
+            <!-- #menu -->
+            <ul id="menu" class="bg-blue dker">
+                <li class="nav-header">Menu</li>
+                <li class="nav-divider"></li>
+                <li class="">
+                    <a href="@Url.Action("Index","Admin")">
+                        <i class="fa fa-dashboard"></i><span class="link-title">&nbsp;Dashboard</span>
                     </a>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@OnneshProject.Security.SessionPersister.Name<b class="fa fa-angle-down"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href=""><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
-                        <li><a href=""><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
-                        <li class="divider"></li>
-                        <li><a href="@Url.Action("Logout","Account")"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="fa fa-code"></i>
+                        <span class="link-title">
+                            Service
+                        </span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="collapse">
+                        <li>
+                            <a href="">
+                                <i class="fa fa-angle-right"></i>&nbsp;Post New
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-angle-right"></i>&nbsp;At a glance
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-angle-right"></i>&nbsp;Deleted Services
+                            </a>
+                        </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript:;">Institute<span class="fa arrow"></span>  </a>
+                    <ul class="collapse">
+                        <li> <a href="javascript:;">Add New</a>  </li>
+                        <li> <a href="javascript:;">Institute List</a>  </li>
+                        <li> <a href="javascript:;">Deleted List</a>  </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="javascript:;">
+                        <i class="fa fa-tasks"></i>
+                        <span class="link-title">Category</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="collapse">
+                        <li>
+                            <a href="@Url.Action("AddCategory","Admin")">
+                                <i class="fa fa-angle-right"></i>&nbsp; Add Category
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("AddSubCategory","Admin")">
+                                <i class="fa fa-angle-right"></i>&nbsp; Add Sub Category
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-angle-right"></i>&nbsp; Category List
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-angle-right"></i>&nbsp; Sub Category List
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="javascript:;">
+                        <i class="fa fa-user "></i>
+                        <span class="link-title">Users</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="collapse">
+                        <li>
+                            <a href="@Url.Action("NonConfirmUserList","ManageUser")">
+                                <i class="fa fa-angle-right"></i>&nbsp; Non Confirm Users
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Users","ManageUser")">
+                                <i class="fa fa-angle-right"></i>&nbsp; User List
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-angle-right"></i>&nbsp; Deleted Users
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="javascript:;">
+                        <i class="fa fa-pencil"></i>
+                        <span class="link-title">
+                            Service Provider
+                        </span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="collapse">
+                        <li>
+                            <a href="@Url.Action("NonCofirmProvider","ManageProvider")">
+                                <i class="fa fa-angle-right"></i>&nbsp; Non Confirm Provider
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Providers","ManageProvider")">
+                                <i class="fa fa-angle-right"></i>&nbsp; Provider List
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-angle-right"></i>&nbsp; Deleted Provider
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @*<li>
+                    <a href="table.html">
+                        <i class="fa fa-table"></i>
+                        <span class="link-title">Tables</span>
+                    </a>
+                </li>*@
+                
+                <li>
+                    <a href="javascript:;">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        <span class="link-title">
+                            Admin User
+                        </span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="collapse">
+                        <li>
+                            <a href="@Url.Action("AddAdmin","Accounts")">
+                                <i class="fa fa-angle-right"></i>&nbsp;Add New
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fa fa-angle-right"></i>&nbsp;Admin List
+                            </a>
+                        </li>                        
+                    </ul>
+                </li>
+                
+                @*<li>
+                    <a href="javascript:;">
+                        <i class="fa fa-code"></i>
+                        <span class="link-title">
+                            Unlimited Level Menu
+                        </span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="collapse">
+                        <li>
+                            <a href="javascript:;">Level 1  <span class="fa arrow"></span>  </a>
+                            <ul class="collapse">
+                                <li> <a href="javascript:;">Level 2</a>  </li>
+                                <li> <a href="javascript:;">Level 2</a>  </li>
+                                <li>
+                                    <a href="javascript:;">Level 2  <span class="fa arrow"></span>  </a>
+                                    <ul class="collapse">
+                                        <li> <a href="javascript:;">Level 3</a>  </li>
+                                        <li> <a href="javascript:;">Level 3</a>  </li>
+                                        <li>
+                                            <a href="javascript:;">Level 3  <span class="fa arrow"></span>  </a>
+                                            <ul class="collapse">
+                                                <li> <a href="javascript:;">Level 4</a>  </li>
+                                                <li> <a href="javascript:;">Level 4</a>  </li>
+                                                <li>
+                                                    <a href="javascript:;">Level 4  <span class="fa arrow"></span>  </a>
+                                                    <ul class="collapse">
+                                                        <li> <a href="javascript:;">Level 5</a>  </li>
+                                                        <li> <a href="javascript:;">Level 5</a>  </li>
+                                                        <li> <a href="javascript:;">Level 5</a>  </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li> <a href="javascript:;">Level 4</a>  </li>
+                                    </ul>
+                                </li>
+                                <li> <a href="javascript:;">Level 2</a>  </li>
+                            </ul>
+                        </li>
+                        <li> <a href="javascript:;">Level 1</a>  </li>
+                        <li>
+                            <a href="javascript:;">Level 1  <span class="fa arrow"></span>  </a>
+                            <ul class="collapse">
+                                <li> <a href="javascript:;">Level 2</a>  </li>
+                                <li> <a href="javascript:;">Level 2</a>  </li>
+                                <li> <a href="javascript:;">Level 2</a>  </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>*@
             </ul>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    @if (Convert.ToInt32(OnneshProject.Security.SessionPersister.AccountType) < 4)
-                    {
-                        <li>
-                            <a href="#" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-search"></i>Users<i class="fa fa-fw fa-angle-down pull-right"></i></a>
-                            <ul id="submenu-1" class="collapse">
-                                <li><a href=""><i class="fa fa-angle-double-right"></i>User 1</a></li>
-                                <li><a href=""><i class="fa fa-angle-double-right"></i> User 2</a></li>
-                                <li><a href=""><i class="fa fa-angle-double-right"></i> User 3</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("AddAdmin","Accounts")"><i class="fa fa-fw fa-user-plus"></i>Register User</a>
-                        </li>
-                    }
-                    @if (Convert.ToInt32(OnneshProject.Security.SessionPersister.AccountType) == 4)
-                    {
-                        <li>
-                            <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-star"></i>Customers<i class="fa fa-fw fa-angle-down pull-right"></i></a>
-                            <ul id="submenu-2" class="collapse">
-                                <li><a href=""><i class="fa fa-angle-double-right"></i> Customer 1</a></li>
-                                <li><a href=""><i class="fa fa-angle-double-right"></i> Customer 2</a></li>
-                                <li><a href=""><i class="fa fa-angle-double-right"></i> Customer 3</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("", "")"><i class="fa fa-fw fa-user-plus"></i></a>
-                        </li>
-                    }
-                    <li>
-                        <a href="sugerencias"><i class="fa fa-fw fa-paper-plane-o"></i>Contact</a>
-                    </li>
-                    <li>
-                        <a href="faq"><i class="fa fa-fw fa fa-question-circle"></i>Help</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </nav>
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                @RenderBody()
-            </div>
-            <footer class="pull-right">
-                <p>&copy; @DateTime.Now.Year - Onnesh.com</p>
-            </footer>
+            <!-- /#menu -->
         </div>
+        <!-- /#left -->
+        <div id="content">
+            <div class="outer">
+                <div class="inner bg-light lter">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        
     </div>
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-            $(".side-nav .collapse").on("hide.bs.collapse", function () {
-                $(this).prev().find(".fa").eq(1).removeClass("fa-angle-right").addClass("fa-angle-down");
-            });
-            $('.side-nav .collapse').on("show.bs.collapse", function () {
-                $(this).prev().find(".fa").eq(1).removeClass("fa-angle-down").addClass("fa-angle-right");
-            });
-        })
-    </script>
+    <!-- /#wrap -->
+    <footer class="Footer bg-dark dker">
+        <p>&copy; @DateTime.Now.Year - Onnesh.com</p>
+    </footer>
+    <!-- /#footer -->
+    <!-- #helpModal -->
+    <div id="helpModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                        culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- /#helpModal -->    
 </body>
 </html>

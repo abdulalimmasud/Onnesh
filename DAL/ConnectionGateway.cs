@@ -15,10 +15,10 @@ namespace OnneshProject.DAL
         private static readonly SqlConnectionStringBuilder liveConnectionString = new SqlConnectionStringBuilder
         {
             ApplicationName = "LiveConnection",
-            DataSource = "",
-            InitialCatalog = "OnneshDb",
-            UserID = "",
-            Password = "",
+            DataSource = "143.95.230.6",
+            InitialCatalog = "bdvouche_onnesh",
+            UserID = "bdvouche_onnesh",
+            Password = "zgjM$402",
             IntegratedSecurity = false,
             PersistSecurityInfo = false,
             Pooling = true
@@ -27,8 +27,8 @@ namespace OnneshProject.DAL
         private SqlConnection _databaseConnection;
         public IDbConnection GetConnection()
         {
-            _databaseConnection = new SqlConnection(localConnectionString);
-            //_databaseConnection = new SqlConnection(liveConnectionString.ConnectionString);
+            //_databaseConnection = new SqlConnection(localConnectionString);
+            _databaseConnection = new SqlConnection(liveConnectionString.ConnectionString);
             try
             {
                 _databaseConnection.Open();

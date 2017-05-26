@@ -52,7 +52,7 @@
                         <strong>Error!</strong> @error
                     </div>
                 }
-                @using (Html.BeginForm("AdminLogin", "Accounts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("ProviderLogin", "Accounts", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
                     <p class="text-muted text-center">
@@ -68,15 +68,16 @@
                     <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign In" />
                 }
                 <div id="tabs" data-tabs="tabs">
-                    <p class="text-center"><a href="#register" data-toggle="tab">Need an Account?</a></p>
+                    <p class="text-center"><a href="@Url.Action("NewServiceProvider","Accounts")">Need an Account?</a></p>
                 </div>
             </div>
         </div>
         <hr>
         <div class="text-center">
             <ul class="list-inline">
-                <li><a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a></li>
-                <li><a class="text-muted" href="#signup" data-toggle="tab">Signup</a></li>
+                <li><a class="text-muted" href="" data-toggle="tab">Forgot Password</a></li>
+                @*<li><a class="text-muted" onclick="location.href = window.location.origin + '/Accounts/NewServiceProvider'">Signup</a></li>*@
+                <li><a class="text-muted" href="@Url.Action("NewServiceProvider","Accounts")" target="_blank">Signup</a></li>
             </ul>
         </div>
     </div>
@@ -86,9 +87,7 @@
             $(document).ready(function () {
                 $('.list-inline li > a').click(function () {
                     var activeForm = $(this).attr('href') + ' > form';
-                    //console.log(activeForm);
                     $(activeForm).addClass('animated fadeIn');
-                    //set timer to 1 seconds, after that, unload the animate animation
                     setTimeout(function () {
                         $(activeForm).removeClass('animated fadeIn');
                     }, 1000);

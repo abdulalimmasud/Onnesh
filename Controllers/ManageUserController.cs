@@ -12,19 +12,21 @@ namespace OnneshProject.Controllers
 {
     public class ManageUserController : Controller
     {
+        [HttpGet, OutputCache(NoStore = true, Duration = 1)]
         [AdminAuthorize(Roles = "Super,Admin")]
         public ActionResult NonConfirmUserList()
         {
             List<Users> users = new UserGateway().GetUsers(0, 1);
             return View(users);
         }
+        [HttpGet, OutputCache(NoStore = true, Duration = 1)]
         [AdminAuthorize(Roles = "Super,Admin")]
         public ActionResult Users()
         {
             List<Users> users = new UserGateway().GetUsers(1, 1);
             return View(users);
         }
-        [HttpGet]
+        [HttpGet, OutputCache(NoStore = true, Duration = 1)]
         [AdminAuthorize(Roles = "Super,Admin")]
         public ActionResult EditUser(int id)
         {
@@ -49,7 +51,7 @@ namespace OnneshProject.Controllers
                 ViewBag.Error = "Information is missing.";
             return View(user);
         }
-        [HttpGet]
+        [HttpGet, OutputCache(NoStore = true, Duration = 1)]
         [AdminAuthorize(Roles = "Super,Admin")]
         public ActionResult ConfrimUser(int id)
         {
@@ -62,16 +64,16 @@ namespace OnneshProject.Controllers
             List<Users> users = new UserGateway().GetUsers(0, 1);
             return View("NonConfirmUserList",users);
         }
-        [HttpGet]
+        [HttpGet, OutputCache(NoStore = true, Duration = 1)]
         [AdminAuthorize(Roles = "Super,Admin")]
         public ActionResult DeleteNonConfirmUser(int id)
         {
             int deletedBy = Convert.ToInt32(SessionPersister.Id);
-            //int rowAffected = new UserGateway().DeleteUser(id, deletedBy);
-            //if (rowAffected > 0)
-            //    ViewBag.Success = "User Deleted Successful";
-            //else
-            //    ViewBag.Error = "Server does not response";
+            int rowAffected = new UserGateway().DeleteUser(id, deletedBy);
+            if (rowAffected > 0)
+                ViewBag.Success = "User Deleted Successful";
+            else
+                ViewBag.Error = "Server does not response";
             List<Users> users = new UserGateway().GetUsers(0, 1);
             return View("NonConfirmUserList",users);
         }

@@ -20,5 +20,15 @@ namespace OnneshProject.DAL
                 return con.Query<AdminUser>(sql: @"[Admin].[USP_AdminUserLogin]", param: parameter, commandType: CommandType.StoredProcedure).FirstOrDefault();
             }
         }
+        public ServiceProvider ServiceProviderLogin(string email, string password)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add(name: "@Email", value: email, dbType: DbType.String, direction: ParameterDirection.Input);
+            parameter.Add(name: "@Password", value: password, dbType: DbType.String, direction: ParameterDirection.Input);
+            using (var con = new ConnectionGateway().GetConnection())
+            {
+                return con.Query<ServiceProvider>(sql: @"[Service].[USP_ServiceProviderLogin]", param: parameter, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+        }
     }
 }

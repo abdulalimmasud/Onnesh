@@ -1,0 +1,63 @@
+﻿@model OnneshProject.Models.ServiceProvider
+
+@{
+    ViewBag.Title = "NewServiceProvider";
+    Layout = "~/Views/Shared/CommonLayout.cshtml";
+    string message = ViewBag.Success ?? "";
+    string errorMessage = ViewBag.Error ?? "";
+}
+
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Sign Up as a Service Provider of Onnesh!</div>
+                <div class="panel-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        if (message != "")
+                        {
+                            <div class="alert alert-success">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>@message</strong>
+                            </div>
+                        }
+                        else if (errorMessage != "")
+                        {
+                            <div class="alert alert-danger">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>@errorMessage</strong>
+                            </div>
+                        }
+
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @required = "" } })
+
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @required = "" } })
+
+                        @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control", @required = "" } })
+
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control",@type="password", @required = "" } })
+
+                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @required = "" } })
+
+                        @Html.LabelFor(model => model.DistrictId, htmlAttributes: new { @class = "control-label" }) <br />
+                        @Html.DropDownListFor(model => model.DistrictId, new SelectList(ViewBag.Districts, "Value", "Text"), new { htmlAttributes = new { @class = "form-control", @required = "" } })
+
+                        <center><input type="submit" class="btn btn-primary m-t-10" id="submitbtn" name="submit" value="Sign Up"></center>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

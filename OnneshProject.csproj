@@ -134,13 +134,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\CSS\Common\adminlogin.css" />
-    <Content Include="Content\CSS\Common\admin_layout.css" />
-    <Content Include="Content\CSS\Common\bootstrap.min.css" />
+    <Content Include="Content\CSS\Common\animate.css" />
+    <Content Include="Content\CSS\Common\bootstrap.css" />
     <Content Include="Content\CSS\Common\font-awesome.min.css" />
+    <Content Include="Content\CSS\Common\main.css" />
+    <Content Include="Content\CSS\Common\metisMenu.css" />
+    <Content Include="Content\CSS\Common\onoffcanvas.css" />
+    <Content Include="Content\CSS\Common\serviceProviderLayout.css" />
+    <Content Include="Content\CSS\Common\style-switcher.css" />
+    <Content Include="Content\CSS\list.css" />
+    <Content Include="Content\CSS\Temporary\bg.jpg" />
+    <Content Include="Content\CSS\Temporary\bootstrap-light.css" />
+    <Content Include="Content\CSS\Temporary\paperplane.png" />
+    <Content Include="Content\CSS\Temporary\style.css" />
+    <Content Include="Content\Images\user.gif" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\Common\bootstrap.min.js" />
-    <Content Include="Scripts\Common\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\Common\app.js" />
+    <Content Include="Scripts\Common\bootstrap.js" />
+    <Content Include="Scripts\Common\core.js" />
+    <Content Include="Scripts\Common\jquery.js" />
+    <Content Include="Scripts\Common\metisMenu.js" />
+    <Content Include="Scripts\Common\onoffcanvas.js" />
+    <Content Include="Scripts\Common\screenfull.js" />
+    <Content Include="Scripts\Common\style-switcher.js" />
+    <Content Include="Scripts\jquery.countdown.js" />
+    <Content Include="Scripts\jquery.plugin.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -150,13 +168,17 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\GeneralController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageProviderController.cs" />
     <Compile Include="Controllers\ManageUserController.cs" />
+    <Compile Include="Controllers\ServiceProviderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\AccountGateway.cs" />
     <Compile Include="DAL\AdminUserGateway.cs" />
     <Compile Include="DAL\CategoryGateway.cs" />
     <Compile Include="DAL\ConnectionGateway.cs" />
     <Compile Include="DAL\GeneralGateway.cs" />
+    <Compile Include="DAL\ServiceProviderGateway.cs" />
     <Compile Include="DAL\UserGateway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -169,6 +191,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AdminAuthorizeAttribute.cs" />
     <Compile Include="Security\CustomPrincipal.cs" />
+    <Compile Include="Security\ProviderAuthorizeAttribute.cs" />
     <Compile Include="Security\SessionPersister.cs" />
     <Compile Include="ViewModel\Account.cs" />
     <Compile Include="ViewModel\Repository.cs" />
@@ -188,6 +211,16 @@
     <Content Include="Views\ManageUser\NonConfirmUserList.cshtml" />
     <Content Include="Views\ManageUser\Users.cshtml" />
     <Content Include="Views\ManageUser\EditUser.cshtml" />
+    <Content Include="Views\Shared\ServiceProviderLayout.cshtml" />
+    <Content Include="Content\theme.less" />
+    <Content Include="Content\CSS\Common\bootstrap.css.map" />
+    <Content Include="Views\ServiceProvider\Index.cshtml" />
+    <Content Include="Views\Shared\CommonLayout.cshtml" />
+    <Content Include="Views\Accounts\NewServiceProvider.cshtml" />
+    <Content Include="Views\Accounts\ProviderLogin.cshtml" />
+    <Content Include="Views\ManageProvider\NonCofirmProvider.cshtml" />
+    <Content Include="Views\ManageProvider\Providers.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -14,9 +14,17 @@ namespace OnneshProject.ViewModel
         {
             return ReadAdminData(GetAdminSession());
         }
+        public Account ProviderFind(string username)
+        {
+            return ReadServiceProviderData(GetServiceProviderSession());
+        }
         public Account AdminLogin(Account acc)
         {
             return ReadAdminData(new AccountGateway().AdminUserLogin(acc.Email,acc.Password));
+        }
+        public Account ProviderLogin(Account acc)
+        {
+            return ReadServiceProviderData(new AccountGateway().ServiceProviderLogin(acc.Email, acc.Password));
         }
         private Account ReadAdminData(AdminUser user)
         {
@@ -67,6 +75,41 @@ namespace OnneshProject.ViewModel
             user.Name = SessionPersister.Name;
             user.AdminType = Convert.ToInt32(SessionPersister.AccountType);
             return user;
+        }
+
+        private Account ReadServiceProviderData(ServiceProvider provider)
+        {
+            Account account = null;
+            try
+            {
+                account = new Account();
+                account.Id = provider.Id.ToString();
+                account.Name = provider.Name;
+                account.Email = provider.Email;
+                account.PermitType = provider.IsPermitted.ToString();
+                if (provider.IsPermitted == 1)
+                {
+                    account.Roles = new string[] { "Provider" };
+                }
+                else
+                {
+                    account.Roles = new string[] { "NonConfirm" };
+                }                
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return account;
+        }
+        private ServiceProvider GetServiceProviderSession()
+        {
+            ServiceProvider provider = new ServiceProvider();
+            provider.Id = Convert.ToInt32(SessionPersister.Id);
+            provider.Email = SessionPersister.Email;
+            provider.Name = SessionPersister.Name;
+            provider.IsPermitted = Convert.ToInt32(SessionPersister.PermitType);
+            return provider;
         }
     }
 }

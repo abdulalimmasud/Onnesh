@@ -10,9 +10,9 @@ namespace OnneshProject.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        [DisplayName("Sub Category")]
-        public int Parent_Id { get; set; }
         [DisplayName("Category")]
+        public int Parent_Id { get; set; }
+        [DisplayName("Category Type")]
         public int CategoryType { get; set; }
         public int IsActive { get; set; }
     }

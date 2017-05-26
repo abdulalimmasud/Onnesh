@@ -1,0 +1,70 @@
+﻿@model IEnumerable<OnneshProject.Models.ServiceProvider>
+
+@{
+    ViewBag.Title = "Providers";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    int count = 0;
+}
+<link href="~/Content/CSS/list.css" rel="stylesheet" />
+
+<div class="container-fluid adm-archivos" style="margin-top:5%">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="archivo-ubicacion">
+                <div class="col-md-12 archivo-ubicacion-label bg-primary text-center" style="font-size:25px">Service Providers</div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <span><strong><span class="glyphicon glyphicon-folder-open"> </span> Part of the Onnesh</strong></span>
+                </div>
+                <table class="table table-bordered table-hover vmiddle">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>@Html.DisplayNameFor(model => model.Name)</th>
+                            <th>@Html.DisplayNameFor(model => model.Email)</th>
+                            <th>@Html.DisplayNameFor(model => model.Mobile)</th>
+                            <th>@Html.DisplayNameFor(model => model.Address)</th>
+                            <th>@Html.DisplayNameFor(model => model.DistrictId)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <td class="text-center">
+                                    @count
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.Mobile)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DistrictId)
+                                </td>
+                                <td class="text-center">
+                                    <a href="@Url.Action("DeleteProvider", new { id=item.Id })" class="btn btn-sm btn-danger">Remove</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

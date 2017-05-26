@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>HeroWP.com Countdown / Coming Soon Page</title>
+    <!--CSS-->
+    <link href="~/Content/CSS/Temporary/style.css" rel="stylesheet" />
+    <link href="~/Content/CSS/Temporary/bootstrap-light.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <!--/CSS-->
+    <!--JS-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.plugin.js"></script>
+    <script src="~/Scripts/jquery.countdown.js"></script>
+    <script>
+        $(function () {
+            $('#defaultCountdown').countdown({ until: new Date(2017, 6 - 1, 30) });
+            //Replace above date with your own, to find out more visit http://keith-wood.name/countdown.html
+        });
+    </script>
+    <!--/JS-->
+</head>
+<body>
+    <!--DARK OVERLAY-->
+    <div class="overlay"></div>
+    <!--/DARK OVERLAY-->
+    <!--WRAP-->
+    <div id="wrap">
+        <!--CONTAINER-->
+        <div class="container">
+            <img src="~/Content/CSS/Temporary/paperplane.png" alt="Paper Plane" class="image-align" />
+            <h1>
+                <span>We are</span><br />
+                Reaching For <span class="yellow">Your Dream.</span>
+            </h1>
+            <p>Our site is currently <strong>under construction</strong></p>
+            <div id="defaultCountdown"></div>
+            <p class="copyright">Produly designed by <a href="http://Onnesh.com" target="_blank">Onnesh.com</a></p>
+        </div>
+        <!--/CONTAINER-->
+    </div>
+    <!--/WRAP-->
+</body>
+</html>

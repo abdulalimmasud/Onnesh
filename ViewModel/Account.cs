@@ -15,6 +15,7 @@ namespace OnneshProject.ViewModel
         [Required]
         public string Password { get; set; }
         public string AccountType { get; set; }
+        public string PermitType { get; set; }
         public string[] Roles { get; set; }
     }
 }
